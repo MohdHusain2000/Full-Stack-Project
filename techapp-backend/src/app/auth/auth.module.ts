@@ -1,9 +1,28 @@
+//https://medium.com/@awaisshaikh94/a-detailed-guide-on-implementing-authentication-in-nestjs-4a347ce154b6
+//https://dev.to/fredabod/building-a-nestjs-authentication-api-with-mongodb-and-jwt-a-step-by-step-guide-52hb
+
 import { Module } from '@nestjs/common';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
+import { JwtModule } from '@nestjs/jwt';
+import { APP_GUARD } from '@nestjs/core';
+import { AuthGuard } from './auth.guard';
+import { jwtConstants } from './constants';
+import { UserEntity } from '../users/user.entity';
+import { UsersModule } from '../users/users.module';
 
 @Module({
+  imports: [
+    UsersModule,
+    JwtModule.register({
+      global: true,
+      secret: jwtConstants.secret,
+      signOptions: { expiresIn: '1d' },
+    }),
+  ],
   controllers: [AuthController],
-  providers: [AuthService],
+  providers: [{ provide: APP_GUARD, useClass: AuthGuard }, AuthService],
+
+  exports: [AuthService],
 })
 export class AuthModule {}

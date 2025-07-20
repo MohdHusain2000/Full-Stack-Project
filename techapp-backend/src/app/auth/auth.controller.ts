@@ -1,37 +1,48 @@
-import { Body, Controller, Post, HttpCode, HttpStatus } from "@nestjs/common";
+import { Body, Controller, Post } from "@nestjs/common";
 import { AuthService } from "./auth.service";
 import { ApiResponse, ApiTags } from "@nestjs/swagger";
-import { UserProperties } from "./dto/base-user.dto";
+import { baseUserDto } from "./dto/base-user.dto";
+import { CreateUserDto } from "./dto/create-user.dto";
+import { Public } from "./auth.strategy";
 
 @Controller('auth')
+@Public()
 @ApiTags("auth")
 export class AuthController {
     constructor(private authService: AuthService) {}
   
-  @Post("SignIn")
+  @Post("signin")
   @ApiResponse({
     status: 200,
     description: "The record found",
-    type: [UserProperties],
+    schema: {
+      example: {
+        message: 'Login successful',
+        access_token: 'jwt.token.here',
+      },
+    },
   })
-  signIn(@Body() signInDto: Record<string, any>) {
+  signIn(@Body() signInDto: baseUserDto) {
     return this.authService.signIn(signInDto.email, signInDto.password);
   }
 
-  @Post("signUp")
+  @Post("signup")
+  @Public()
   @ApiResponse({
     status: 200,
     description: "The record found",
-    type: [UserProperties],
+    schema: {
+      example: {
+        message: 'Register successful',
+        access_token: 'jwt.token.here',
+      },
+    },
   })
-  signUp(@Body() signUpDto: Record<string, any>) {
-    const payload = {
-      username: signUpDto.username, 
-      email: signUpDto.email, 
-      password: signUpDto.password,
-      createdAt: new Date()
-    }
-    return this.authService.signUp(payload);
+  signUp(@Body() signUpDto: CreateUserDto) {
+    return this.authService.signUp(
+      signUpDto.email, 
+      signUpDto.password
+    )
   }
 }
 

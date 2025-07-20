@@ -1,32 +1,44 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { ConflictException, Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { UsersService } from '../users/users.service';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class AuthService {
     constructor(private userService: UsersService, private jwtService: JwtService) {}
   
-    async signIn(email, pass) {
-    const user = await this.userService.findOneBy(email);
-    if (user?.password !== pass) {
+    async signIn(email, password) {
+    const user = await this.userService.findByEmail(email);
+    if (user!) {
       throw new UnauthorizedException();
     }
-    const payload = { sub: user.id, email: user.email };
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
+      throw new UnauthorizedException('Invalid credentials');
+    }
+  
+    const payload = { sub: user._id, email: user.email };
+
     return {
-      access_token: await this.jwtService.signAsync(payload),
+      message: 'Login successful',
+      access_token: await this.jwtService.signAsync(payload, { expiresIn: '8h' }),
     };
   }
 
-   async login(user: any) {
-    const payload = { username: user.username, sub: user._id };
-    return {
-      access_token: this.jwtService.sign(payload),
-    };
-  }
+   async signUp(email: string, password: string) {
+    const existingUser = await this.userService.findByEmail(email);
+    if (existingUser) {
+      throw new ConflictException('Email is already registered');
+    }
 
-  async signUp(username: string, email: string, password: string) {
     const hashedPassword = await bcrypt.hash(password, 10);
-    return this.usersService.create(username, email, hashedPassword);
+    const newUser = await this.userService.create(email, hashedPassword);
+
+    const payload = { sub: newUser._id, email: newUser.email };
+    
+    return {
+      message: 'User registered successfully',
+      access_token: await this.jwtService.signAsync(payload, { expiresIn: '8h' }),
+    };
   }
 }
-

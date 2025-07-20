@@ -6,14 +6,17 @@ import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { JwtModule } from '@nestjs/jwt';
 import { APP_GUARD } from '@nestjs/core';
-import { AuthGuard } from './auth.guard';
 import { jwtConstants } from './constants';
 import { UserEntity } from '../users/user.entity';
 import { UsersModule } from '../users/users.module';
+import { PassportModule } from '@nestjs/passport';
+import { MongooseModule } from '@nestjs/mongoose';
+import { JwtAuthGuard } from './auth.guard';
 
 @Module({
   imports: [
-    UsersModule,
+    MongooseModule.forFeature([{name: 'User', schema: UserEntity}]),    UsersModule,
+    PassportModule,
     JwtModule.register({
       global: true,
       secret: jwtConstants.secret,
@@ -21,7 +24,7 @@ import { UsersModule } from '../users/users.module';
     }),
   ],
   controllers: [AuthController],
-  providers: [{ provide: APP_GUARD, useClass: AuthGuard }, AuthService],
+  providers: [{ provide: APP_GUARD, useClass: JwtAuthGuard }, AuthService],
 
   exports: [AuthService],
 })

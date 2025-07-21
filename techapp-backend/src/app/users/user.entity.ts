@@ -17,4 +17,4 @@ export class User {
   refreshToken: string;
 }
 
-export const UserEntity = SchemaFactory.createForClass(User);
+export const UserSchema = SchemaFactory.createForClass(User);

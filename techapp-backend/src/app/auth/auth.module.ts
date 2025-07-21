@@ -7,7 +7,7 @@ import { AuthService } from './auth.service';
 import { JwtModule } from '@nestjs/jwt';
 import { APP_GUARD } from '@nestjs/core';
 import { jwtConstants } from './constants';
-import { UserEntity } from '../users/user.entity';
+import { User, UserSchema } from '../users/user.entity';
 import { UsersModule } from '../users/users.module';
 import { PassportModule } from '@nestjs/passport';
 import { MongooseModule } from '@nestjs/mongoose';
@@ -15,7 +15,7 @@ import { JwtAuthGuard } from './auth.guard';
 
 @Module({
   imports: [
-    MongooseModule.forFeature([{name: 'User', schema: UserEntity}]),    UsersModule,
+    MongooseModule.forFeature([{name: User.name, schema: UserSchema}]),    UsersModule,
     PassportModule,
     JwtModule.register({
       global: true,

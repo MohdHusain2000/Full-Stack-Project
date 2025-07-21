@@ -5,16 +5,16 @@ import { baseUserDto } from "./dto/base-user.dto";
 import { CreateUserDto } from "./dto/create-user.dto";
 import { Public } from "./auth.strategy";
 
-@Controller('auth')
-@Public()
 @ApiTags("auth")
+@Controller('auth')
 export class AuthController {
-    constructor(private authService: AuthService) {}
-  
-  @Post("signin")
+  constructor(private authService: AuthService) {}
+
+  @Public()
+  @Post('signin')
   @ApiResponse({
     status: 200,
-    description: "The record found",
+    description: "Login successful",
     schema: {
       example: {
         message: 'Login successful',
@@ -26,11 +26,11 @@ export class AuthController {
     return this.authService.signIn(signInDto.email, signInDto.password);
   }
 
-  @Post("signup")
   @Public()
+  @Post("signup")
   @ApiResponse({
     status: 200,
-    description: "The record found",
+    description: "Register successful",
     schema: {
       example: {
         message: 'Register successful',
@@ -39,10 +39,6 @@ export class AuthController {
     },
   })
   signUp(@Body() signUpDto: CreateUserDto) {
-    return this.authService.signUp(
-      signUpDto.email, 
-      signUpDto.password
-    )
+    return this.authService.signUp(signUpDto.email, signUpDto.password);
   }
 }
-

@@ -1,6 +1,4 @@
-//https://medium.com/@awaisshaikh94/a-detailed-guide-on-implementing-authentication-in-nestjs-4a347ce154b6
 //https://dev.to/fredabod/building-a-nestjs-authentication-api-with-mongodb-and-jwt-a-step-by-step-guide-52hb
-
 import { Module } from '@nestjs/common';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';

@@ -1,1 +1,24 @@
-<p>login-reactive-form works!</p>
+<!-- https://angular.dev/tutorials/learn-angular/17-reactive-forms -->
+
+<form [formGroup]="loginForm" >
+    <h3>Login Form</h3>
+
+    <div>
+      <label>Email:</label>
+      <input type="email" formControlName="email" placeholder="Enter your email" />
+      <!-- <div class="error" 
+           *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched"> 
+            Please Check Your Email.
+      </div> -->
+    </div>
+
+    <div>
+      <label>Password:</label>
+      <input type="password" formControlName="password" placeholder="Enter your password" />
+      <!-- <div class="error" 
+           *ngIf="loginForm.get('password')?.invalid && signInForm.get('password')?.touched">
+            Password is required.
+      </div> -->
+    </div>
+      <button type="submit">Submit</button>
+</form>

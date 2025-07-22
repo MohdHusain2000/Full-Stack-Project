@@ -8,11 +8,15 @@ export const appRoutes: Route[] = [
         component: StandardUiHomepage
     },
     {
-        path: 'Sign In',
+        path: 'signIn',
+        component: LoginReactiveForm
+    },
+    {
+        path: 'signUp',
         component: LoginReactiveForm
     },
     // {
-    //     path: 'Movies',
+    //     path: 'product',
     //     component:
     // }
 ];

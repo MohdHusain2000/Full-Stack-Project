@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {ReactiveFormsModule, FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { signIn } from '../../states/auth/action/app.action';
+import { signIn } from '../../states/auth/action/users.action';
 
 @Component({
   selector: 'app-login-reactive-form',

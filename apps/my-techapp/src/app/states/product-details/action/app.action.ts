@@ -1,8 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { Product } from '../../../entities/product';
 
-export const add = createAction('[FavoriteProduct] Add',  props<{ product: Product }>());
-export const remove = createAction('[FavoriteProduct] Remove', props<{ product: Product }>());
-export const updateAllState = createAction('[FavoriteProduct] Update all state of favorites products', 
- props<{ products: Product[] }>());
-export const clear = createAction('[FavoriteProduct] Clear');
+export const get = createAction('[Product] Get All Products');
+export const success = createAction('[Product] Get Product Success', props<{ product: Product[] }>());
+export const failed = createAction('[Product] Get Product Failed', props<{ error: any }>());

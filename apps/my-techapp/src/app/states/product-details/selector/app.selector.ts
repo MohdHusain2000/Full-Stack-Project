@@ -1,16 +1,16 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { AppState } from '../../app.state';
+import { ProductState } from '../reducer/app.reducer';
 import { Product } from '../../../entities/product';
 
-export const selectAppState = createFeatureSelector<AppState>('favorite');
+export const selectProductState = createFeatureSelector<ProductState>('products');
 
-// export const selectProducts = createSelector(
-//   selectAppState,
-//   (state: AppState) => state.products
-// );
+export const selectProducts = createSelector(
+  selectProductState,
+  (state: ProductState) => state.items
+);
 
-// export const selectProductById = createSelector(
-//   selectProducts,
-//   (products: Product[], props: { productId: number }) =>
-//     products.find(product => product.id === props.productId)
-// );
+export const selectProductById = createSelector(
+  selectProducts,
+  (products: Product[], props: { productId: number }) =>
+    products.find(product => product.id === props.productId)
+);

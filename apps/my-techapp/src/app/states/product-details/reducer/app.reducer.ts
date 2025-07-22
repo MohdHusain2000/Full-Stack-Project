@@ -1,30 +1,36 @@
-// import { createReducer, on } from '@ngrx/store';
-// import { add, remove, clear, updateAllState } from '../action/app.action';
-// import { AppState } from '../../app.state';
+import { createReducer, on } from '@ngrx/store';
+import { get, success, failed } from '../action/app.action';
+import { Product } from '../../../entities/product';
 
-// export const initialState: AppState = {
-//   products:[],
-// };
+export interface ProductState {
+  items: Product[];
+  loading: boolean;
+  error: any;
+}
 
-// export const favoriteReducer = createReducer(
-//   initialState,
-//   on(add, (state, {product}) => (
-//     {
-//       ...state,
-//       products: [...state.products, product]
-//     }
-//   )
-//   ),
-//   on(remove, (state, {product}) => ({
-//     ...state,
-//     products: state.products.filter((p)=> product.id != p.id)
-//   })),
-//   on(updateAllState, (state, {products}) => (
-//     {
-//       ...state,
-//       products
-//     }
-//   )
-//   ),
-//   on(clear, state => initialState)
-// );
+export const initialProductState: ProductState = {
+  items: [],
+  loading: false,
+  error: null
+};
+
+export const productReducer = createReducer(
+  initialProductState,
+
+  on(get, (state) => ({
+    ...state,
+    loading: true
+  })),
+
+  on(success, (state, { product }) => ({
+    ...state,
+    loading: false,
+    items: product
+  })),
+
+  on(failed, (state, { error }) => ({
+    ...state,
+    loading: false,
+    error
+  })),
+);

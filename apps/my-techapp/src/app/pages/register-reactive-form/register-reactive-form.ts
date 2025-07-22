@@ -6,12 +6,12 @@ import { provideStore, Store } from '@ngrx/store';
 import { signIn } from '../../states/auth/action/users.action';
 import { authReducer } from '../../states/auth/reducer/users.reducer';
 import { UserService } from '../../service/user.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { User } from '../../entities/user';
 
 @Component({
   selector: 'app-Register-reactive-form',
-  imports: [CommonModule,ReactiveFormsModule],
+  imports: [CommonModule,ReactiveFormsModule,RouterLink],
   templateUrl: './register-reactive-form.html',
   styleUrl: './register-reactive-form.css',
   standalone: true,

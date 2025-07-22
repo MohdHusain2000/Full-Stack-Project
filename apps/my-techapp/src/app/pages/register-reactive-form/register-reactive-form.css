@@ -1,62 +1,105 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.navBar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  text-align: left;
+  background: linear-gradient(to right, #d4145a, #fbb03b); /* Modern red-orange gradient */
+  border-radius: 40px;
+  gap: 3vh;
+  padding: 1.85vh;
+  font-weight: bold;
+  width: 98%;
+  margin-left: 1.3vh;
+  box-shadow: 0 6px 15px rgba(233, 30, 99, 0.6);
+}
+
+.navBar a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.13rem;
+  margin-left: 1.3vh;
+  transition: color 0.3s ease;
+}
+
+.navBar a:hover {
+  text-decoration: underline;
+  color: #ffd6e8; 
 }
 
 :host {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(253, 101, 133, 1);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .signup-card {
-    border-radius: 10px;
-    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3);
-    width: 40%;
-    height: 450px;
-    background-color: #ffffff;
-    padding: 10px 30px;
+  border-radius: 15px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7);
+  width: 600px;
+  height: 400px;
+  background: linear-gradient(135deg, #552538, #a33053); /* Deep plum gradient */
+  margin-top: 8vh; 
+  padding: 30px 40px;
+  color: white;
+  margin-left: 27%;
 }
 
 .card-title {
-    padding: 10px;
+  padding: 13px;
 }
 
 .card-title h1 {
-    font-size: 26px;
-    font-weight: bold;
+  font-size: 26px;
+  font-weight: bold;
+  margin: 0;
 }
 
 .form-group input {
-    margin: 5px 0;
-    width: 100%;
-    background-color: #e2e2e2;
-    border: none;
-    outline: none;
-    padding: 12px 20px;
-    border-radius: 4px;
+  margin: 5px 0;
+  width: 100%;
+  background-color: #f0f0f0;
+  border: none;
+  outline: none;
+  padding: 12px 20px;
+  margin-top: 3vh;
+  border-radius: 6px;
+  font-size: 15px;
+  color: #333;
 }
 
 .form-group input[type="submit"] {
-    background-color: #4796ff;
-    color: #ffffff;
-    font-size: 16px;
-    outline: none;
-    border-radius: 5px;
-    border: none;
-    padding: 8px 15px;
-    width: 100%;
+  background-color: #4796ff;
+  color: #ffffff;
+  font-size: 16px;
+  outline: none;
+  border-radius: 6px;
+  border: none;
+  padding: 12px;
+  margin-top: 2vh;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.form-group input[type="submit"]:hover {
+  background-color: #357de3;
 }
 
 .card-terms {
-    display: flex;
-    align-items: center;
-    padding: 10px;
+  display: flex;
+  align-items: center;
+  padding: 10px;
 }
 
 .card-terms span {
-    margin: 5px;
-    font-size: 13px;
+  margin: 5px;
+  font-size: 13px;
 }

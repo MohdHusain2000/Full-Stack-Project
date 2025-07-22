@@ -12,7 +12,7 @@ body {
   flex-wrap: wrap;
   align-items: center;
   text-align: left;
-  background-color: rgb(224, 36, 67);
+  background: linear-gradient(to right, #d4145a, #fbb03b); 
   border-radius: 40px;
   gap: 3vh;
   padding: 1.85vh;
@@ -67,7 +67,7 @@ h1 {
 button{
     border-radius: 12px;
     color: white;
-    background-color: rgb(231, 26, 61);
+    background: linear-gradient(to right, #d4145a, #fbb03b); 
     margin-top: 1.5vh;
     font-family: 'Segoe UI', sans-serif;
     font-size: 2.5vh;

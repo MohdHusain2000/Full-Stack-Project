@@ -2,14 +2,16 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {ReactiveFormsModule, FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Store } from '@ngrx/store';
+import { provideStore, Store } from '@ngrx/store';
 import { signIn } from '../../states/auth/action/users.action';
+import { authReducer } from '../../states/auth/reducer/users.reducer';
 
 @Component({
   selector: 'app-login-reactive-form',
   imports: [CommonModule,ReactiveFormsModule],
   templateUrl: './login-reactive-form.html',
   styleUrl: './login-reactive-form.css',
+  standalone: true,
 })
 export class LoginReactiveForm {
   loginForm!: FormGroup;

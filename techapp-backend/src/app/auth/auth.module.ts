@@ -12,7 +12,10 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { JwtAuthGuard } from './auth.guard';
 
 @Module({
-  imports: [
+  providers: [{ provide: APP_GUARD, useClass: JwtAuthGuard }, AuthService],
+  exports: [AuthService],
+  controllers: [AuthController],
+    imports: [
     MongooseModule.forFeature([{name: User.name, schema: UserSchema}]),    UsersModule,
     PassportModule,
     JwtModule.register({
@@ -21,9 +24,5 @@ import { JwtAuthGuard } from './auth.guard';
       signOptions: { expiresIn: '1d' },
     }),
   ],
-  controllers: [AuthController],
-  providers: [{ provide: APP_GUARD, useClass: JwtAuthGuard }, AuthService],
-
-  exports: [AuthService],
 })
 export class AuthModule {}

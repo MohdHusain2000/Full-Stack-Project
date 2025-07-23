@@ -10,7 +10,7 @@ export class ProductController {
 
   @Public()
   @Get()
-  async getAllProducts(@Query('q') data: string) {
-    return this.productService.getAll(data || 'angular');
+  async getAllProducts() {
+    return this.productService.getAll();
   }
-} 
+}

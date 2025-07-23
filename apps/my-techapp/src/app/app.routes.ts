@@ -2,6 +2,7 @@ import { Route } from '@angular/router';
 import { StandardUiHomepage } from './pages/standard-ui-hompage/standard-ui-homepage';
 import { LoginReactiveForm } from './pages/login-reactive-form/login-reactive-form';
 import { RegisterReactiveForm } from './pages/register-reactive-form/register-reactive-form';
+import { ProductDetailsPage } from './pages/product-details-page/product-details-page';
 
 export const appRoutes: Route[] = [
     {
@@ -16,9 +17,9 @@ export const appRoutes: Route[] = [
         path: 'signUp',
         component: RegisterReactiveForm
     },
-    // {
-    //     path: 'product',
-    //     component: 
-    // }
+    {
+        path: 'product',
+        component: ProductDetailsPage 
+    }
 ];
 

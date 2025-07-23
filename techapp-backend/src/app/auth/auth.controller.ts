@@ -27,7 +27,7 @@ export class AuthController {
   }
 
   @Public()
-  @Post("signup")
+  @Post('signup')
   @ApiResponse({
     status: 200,
     description: "Register successful",

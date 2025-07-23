@@ -8,6 +8,7 @@ import { authReducer } from '../../states/auth/reducer/users.reducer';
 import { UserService } from '../../service/user.service';
 import { Router, RouterLink } from '@angular/router';
 import { User } from '../../entities/user';
+import { UserRegister } from '../../entities/user-sign-up';
 
 @Component({
   selector: 'app-Register-reactive-form',
@@ -28,7 +29,7 @@ export class RegisterReactiveForm {
 
   public onSubmit() {
     if (this.signupForm.valid) {
-      this.store.dispatch(signUp({ user: this.signupForm.value as User}));
+      this.store.dispatch(signUp({ user: this.signupForm.value as UserRegister}));
     }
   }   
 }

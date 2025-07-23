@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { User } from '../entities/user';
 import { map } from 'rxjs/operators';
+import { UserRegister } from '../entities/user-sign-up';
 
 @Injectable({
   providedIn: 'root',
@@ -16,23 +17,18 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   authenticate(email: string, password: string): Observable<User> {
-    return this.http.post<{ user: User; token: string }>(
-      `${this.baseUrl}/auth/signin`,{ email, password }).pipe(
-      tap(response => {
-        this.currentUser = response.user;
-        this.token = response.token;
-        localStorage.setItem('auth_token', this.token);
-        localStorage.setItem('auth_user', JSON.stringify(this.currentUser));
-      }),
-      map(response => ({
-        ...response.user,
-        token: response.token,
-      }))
-    );
+  return this.http.post<{ access_token: string }>(
+  `${this.baseUrl}/auth/signin`,{ email, password }).pipe(
+  tap(response => {
+    this.token = response.access_token;
+    localStorage.setItem('auth_token', this.token);
+    this.currentUser = { email, token: this.token }; 
+    localStorage.setItem('auth_user', JSON.stringify(this.currentUser));
+  }),map(() => this.currentUser!));
   }
 
-  create(user: User): Observable<User> {
-    return this.http.post<User>(`${this.baseUrl}/auth/signup`, user);
+  create(user: UserRegister): Observable<UserRegister> {
+    return this.http.post<UserRegister>(`${this.baseUrl}/auth/signup`, user);
   }
 
   signout(): Observable<void> {

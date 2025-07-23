@@ -5,11 +5,11 @@ export type ProductDocument = Product & Document;
 
 @Schema({ timestamps: true })
 export class Product {
-  @Prop() 
-  name: string;
-  @Prop() 
-  image: string;
-  @Prop() 
+  @Prop({ required: true })
+  title: string;
+  @Prop({ required: true })
+  thumbnail: string;
+  @Prop({ required: true })
   price: number;
 }
 

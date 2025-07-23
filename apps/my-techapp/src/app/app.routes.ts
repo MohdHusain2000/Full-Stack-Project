@@ -3,6 +3,7 @@ import { StandardUiHomepage } from './pages/standard-ui-hompage/standard-ui-home
 import { LoginReactiveForm } from './pages/login-reactive-form/login-reactive-form';
 import { RegisterReactiveForm } from './pages/register-reactive-form/register-reactive-form';
 import { ProductDetailsPage } from './pages/product-details-page/product-details-page';
+import { UsersRegisterTable } from './pages/users-register-table/users-register-table';
 
 export const appRoutes: Route[] = [
     {
@@ -20,6 +21,10 @@ export const appRoutes: Route[] = [
     {
         path: 'product',
         component: ProductDetailsPage 
+    },
+    {
+        path: 'users',
+        component: UsersRegisterTable 
     }
 ];
 

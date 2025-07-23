@@ -11,6 +11,6 @@ export const selectProducts = createSelector(
 
 export const selectProductById = createSelector(
   selectProducts,
-  (products: Product[], props: { productId: number }) =>
-    products.find(product => product.id === props.productId)
+  (products: Product[], props: { productId: string }) =>
+    products.find(product => product._id === props.productId)
 );

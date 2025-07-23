@@ -1,0 +1,22 @@
+<nav class="navBar">
+    <a routerLink = "">Home</a>
+</nav>
+
+<table *ngIf="!loading && !error && users.length > 0">
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{ user.username }}</td>
+      <td>{{ user.email }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<div *ngIf="!loading && !error && users.length === 0">
+  No users found.
+</div>

@@ -22,10 +22,10 @@ export const productReducer = createReducer(
     loading: true
   })),
 
-  on(success, (state, { product }) => ({
+  on(success, (state, { products }) => ({
     ...state,
     loading: false,
-    items: product
+    items: products
   })),
 
   on(failed, (state, { error }) => ({

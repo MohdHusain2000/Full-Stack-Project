@@ -1,21 +1,22 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { catchError, debounceTime, map, switchMap } from 'rxjs/operators';
+import { catchError, debounceTime, map, switchMap, tap } from 'rxjs/operators';
 import * as AuthActions from '../action/users.action';
 import { UserService } from '../../../service/user.service';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class UserEffects {
   constructor(
     private actions$: Actions,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) {}
 
   authenticate$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AuthActions.signIn),
-      debounceTime(500),
       switchMap(({ email, password }) =>
         this.userService.authenticate(email, password).pipe(
           map(user =>
@@ -50,7 +51,6 @@ export class UserEffects {
   signUp$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AuthActions.signUp),
-      debounceTime(500),
       switchMap(({ user }) =>
         this.userService.create(user).pipe(
           map(createdUser => AuthActions.signUpSuccess({ user: createdUser })),
@@ -58,6 +58,16 @@ export class UserEffects {
         )
       )
     )
+  );
+
+  signUpSuccess$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActions.signUpSuccess),
+      tap(() => {
+        this.router.navigate(['/login']);
+      })
+    ),
+    { dispatch: false }
   );
 
   signOut$ = createEffect(() =>

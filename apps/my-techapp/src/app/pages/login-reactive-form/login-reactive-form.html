@@ -2,16 +2,15 @@
 <!-- https://medium.com/@manjushakatakam/login-page-in-angular-creating-a-login-page-in-angular-involves-several-steps-bdbe51300159 -->
 <nav class="navBar">
     <a routerLink = "">Home</a>
-    <a routerLink = "signIn">Sign In</a>
 </nav>
 <div class="signin-card">
      <div class="card-title">
         <h1>Login</h1>
-        <span>You don't have an account? <a routerLink="/signup">Sign up</a></span>
+        <span>You don't have an account? <a routerLink="/signUp">Sign up</a></span>
     </div>
     <form class="form-group" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <input name="email" type="email" formControlName="email" placeholder="Email">
         <input type="password" formControlName="password" placeholder="Password">
-        <button>Submit</button>
+        <button type="submit">Submit</button>
     </form>
 

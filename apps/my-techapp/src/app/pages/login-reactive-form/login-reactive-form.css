@@ -41,11 +41,11 @@
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
   width: 500px;
   height: 350px;
-  background:#a33053;
-  margin-top: 6vh; 
+  background:#771432;
+  margin-top: 8vh; 
   padding: 30px 40px;
   color: white;
-  margin-left: 25%;
+  margin-left: 30%;
 }
 
 .card-title {

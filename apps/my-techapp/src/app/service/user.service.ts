@@ -9,7 +9,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class UserService {
-  private apiUrl = 'http://localhost:3000/api';
+  private baseUrl = 'http://localhost:3000/api';
   private currentUser: User | null = null;
   private token: string | null = null;
 
@@ -17,9 +17,7 @@ export class UserService {
 
   authenticate(email: string, password: string): Observable<User> {
     return this.http.post<{ user: User; token: string }>(
-      `${this.apiUrl}/auth/signin`,
-      { email, password }
-    ).pipe(
+      `${this.baseUrl}/auth/signin`,{ email, password }).pipe(
       tap(response => {
         this.currentUser = response.user;
         this.token = response.token;
@@ -34,7 +32,7 @@ export class UserService {
   }
 
   create(user: User): Observable<User> {
-    return this.http.post<User>(`${this.apiUrl}/auth/signup`, user);
+    return this.http.post<User>(`${this.baseUrl}/auth/signup`, user);
   }
 
   signout(): Observable<void> {

@@ -19,14 +19,19 @@ export class LoginReactiveForm {
 
   constructor(private fb: FormBuilder, private store: Store) {
     this.loginForm = this.fb.group({
-      email: ['', Validators.required, Validators.email],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]]
     });
   }
   onSubmit() {
   if (this.loginForm.valid) {
     const { email, password } = this.loginForm.value;
+        console.log({ email, password }); // Check what you're actually getting
+
     this.store.dispatch(signIn({ email, password }));
+  }  else {
+    console.warn('Form is invalid:', this.loginForm.value);
   }
 }
 }
+

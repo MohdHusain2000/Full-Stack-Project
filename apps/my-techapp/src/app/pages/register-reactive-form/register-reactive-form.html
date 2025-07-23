@@ -1,18 +1,29 @@
 <nav class="navBar">
-    <a routerLink = "">Home</a>
-    <a routerLink = "signUp">Sign Up</a>
+  <a routerLink="">Home</a>
 </nav>
 <div class="signup-card">
-    <div class="card-title">
-        <h1>Create Account</h1>
-        <span>Already have an account? <a routerLink="/login">Sign In</a></span>
+  <div class="card-title">
+    <h1>Create Account</h1>
+    <span>Already have an account? <a routerLink="/signIn">Sign In</a></span>
+  </div>
+  <form class="form-group" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+    <input id="email" type="email" name="email" placeholder="Enter Email" 
+    formControlName="email"/>
+    <div class="error" *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched">
+      Please enter a valid email.
     </div>
-    <form class="form-group" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
-        <input type="email" name="email" placeholder="Email" formControlName="email">
-        <input type="password" name="password" placeholder="Password" formControlName="password">
-        <input type="submit" value="Signup">
-    </form>
+
+    <input  id="password"  type="password" name="password" placeholder="Enter Password" 
+    formControlName="password"/>
+    <div class="error" *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched">
+      Password is required.
+    </div>
+
     <div class="card-terms">
-        <input type="checkbox"> <span>I have read and agree to the <a href="">Terms of Service</a></span>
+      <input type="checkbox"/>
+      <label>I have read and agree to the <a href="">Terms of Service</a></label>
     </div>
+
+    <input type="submit" value="Signup" />
+  </form>
 </div>

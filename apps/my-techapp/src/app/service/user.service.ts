@@ -23,7 +23,7 @@ export class UserService {
   tap(response => {
     this.token = response.access_token;
     localStorage.setItem('auth_token', this.token);
-    this.currentUser = { email, token: this.token }; 
+    this.currentUser = { email, access_token: this.token }; 
     localStorage.setItem('auth_user', JSON.stringify(this.currentUser));
   }),map(() => this.currentUser!));
   }

@@ -1,4 +1,4 @@
 export interface User {
   email: string;
-  token: string
+  access_token: string;
 }  

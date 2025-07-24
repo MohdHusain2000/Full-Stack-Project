@@ -28,7 +28,7 @@ export class UserEffects {
         switchMap(({ email, password }) =>
           this.userService.authenticate(email, password).pipe(
             map(user =>
-              AuthActions.signInSuccess({ token: user.token, user })),
+              AuthActions.signInSuccess({ token: user.access_token, user:{ email: user.email } })),
             catchError(error =>
               of(AuthActions.signInFailed({ error }))
             )
@@ -40,7 +40,10 @@ export class UserEffects {
   this.signInSuccess$ = createEffect(() =>
   this.actions$.pipe(
     ofType(AuthActions.signInSuccess),
-    tap(() => this.router.navigate(['/']))
+    tap(({ token }) => {
+      localStorage.setItem('auth_token', token);  // Save token here
+      this.router.navigate(['/']);
+    })
   ),
   { dispatch: false }
 );
@@ -93,13 +96,13 @@ export class UserEffects {
       )
     );
 
-    this.signOutSuccess$ = createEffect(() =>
-      this.actions$.pipe(
-      ofType(AuthActions.signOutSuccess),
-      tap(() => this.router.navigate(['/signIn']))
-  ),
-    { dispatch: false }
-  );
-
+this.signOutSuccess$ = createEffect(() =>
+  this.actions$.pipe(
+    ofType(AuthActions.signOutSuccess),
+    tap(() => {
+      localStorage.removeItem('auth_token'); // 🧹 Clear token on logout
+      this.router.navigate(['/signIn']);
+    })),
+  { dispatch: false });
   }
 }

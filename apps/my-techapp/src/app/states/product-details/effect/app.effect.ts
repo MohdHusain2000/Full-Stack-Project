@@ -7,9 +7,10 @@ import { failed, get, success } from '../action/app.action';
 
 @Injectable()
 export class ProductsEffects {
-    constructor(private actions$: Actions, private productsService: ProductsService) {}
-
-  loadProducts$ = createEffect(() =>
+  loadProducts$
+  
+  constructor(private actions$: Actions, private productsService: ProductsService) {
+  this.loadProducts$ = createEffect(() =>
     this.actions$.pipe(
       ofType(get),
       mergeMap(() =>
@@ -21,4 +22,5 @@ export class ProductsEffects {
     )
   );
 
-}
+    }
+  }

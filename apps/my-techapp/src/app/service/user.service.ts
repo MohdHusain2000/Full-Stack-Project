@@ -5,6 +5,7 @@ import { tap } from 'rxjs/operators';
 import { User } from '../entities/user';
 import { map } from 'rxjs/operators';
 import { UserRegister } from '../entities/user-sign-up';
+import { RegisterUser } from '../entities/register-user';
 
 @Injectable({
   providedIn: 'root',
@@ -53,8 +54,8 @@ export class UserService {
   }
 
   
-  getAll(): Observable<User[]> {
-    return this.http.get<User[]>(`${this.baseUrl}/users`);
+  getAll(): Observable<RegisterUser[]> {
+    return this.http.get<RegisterUser[]>(`${this.baseUrl}/users`);
   }
 
 }

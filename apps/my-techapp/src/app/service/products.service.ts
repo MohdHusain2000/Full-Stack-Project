@@ -1,9 +1,11 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { Product } from '../entities/product';
+import { Injectable } from '@angular/core';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class ProductsService {
 
    constructor(private http: HttpClient) {}

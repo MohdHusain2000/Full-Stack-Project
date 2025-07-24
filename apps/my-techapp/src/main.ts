@@ -7,6 +7,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { UserEffects } from './app/states/auth/effect/users.effect';
 import { provideEffects } from '@ngrx/effects';
 import { productReducer } from './app/states/product-details/reducer/app.reducer';
+import { ProductsEffects } from './app/states/product-details/effect/app.effect';
 
 bootstrapApplication(App, {
   providers: [
@@ -14,7 +15,7 @@ bootstrapApplication(App, {
       auth: authReducer,
       products: productReducer
     }),
-    provideEffects([UserEffects]),
+    provideEffects([UserEffects, ProductsEffects]),
     provideHttpClient(),
     ...appConfig.providers
   ]

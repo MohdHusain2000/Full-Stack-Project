@@ -3,6 +3,10 @@
     <a routerLink = "signUp">Sign Up</a>
     <a routerLink = "signIn">Sign In</a>
     <a routerLink = "users">Users</a>
+    <div *ngIf="user | async as currentUser">
+    <span>Welcome, {{ currentUser.email }}</span>
+    <button (click)="logout()">Logout</button>
+    </div>
 </nav>
 
 <div class="container">

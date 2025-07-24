@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../service/user.service';
-import { User } from '../../entities/user';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { RegisterUser } from '../../entities/register-user';
 
 @Component({
   selector: 'app-users-register-table',
@@ -12,7 +12,7 @@ import { RouterLink } from '@angular/router';
 
 })
 export class UsersRegisterTable implements OnInit {
-  users: User[] = [];
+  users: RegisterUser[] = [];
   loading = false;
   error = '';
 

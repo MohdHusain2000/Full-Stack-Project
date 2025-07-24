@@ -33,6 +33,24 @@ body {
   color: rgb(92, 92, 243);
 }
 
+.navBar div {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-left: 50%;
+}
+
+.navBar button {
+  background-color: #fff;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: -1.3vh;
+}
+
+
 .container {
   display: flex;
   flex-direction: column;

@@ -5,13 +5,20 @@
 <table *ngIf="!loading && !error && users.length > 0">
   <thead>
     <tr>
-      <th>Username</th>
       <th>Email</th>
+      <th>CreatedAt</th>
+      <th>updatedAt</th>
+
+
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let user of users">
       <td>{{ user.email }}</td>
+      <td>{{ user.createdAt }}</td>
+      <td>{{ user.updatedAt }}</td>
+
+
     </tr>
   </tbody>
 </table>

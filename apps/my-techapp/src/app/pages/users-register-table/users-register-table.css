@@ -32,89 +32,37 @@ body {
   text-decoration: underline;
   color: rgb(92, 92, 243);
 }
-
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+table {
+  width: 95%;
+  max-width: 1280px;
+  margin: 2rem auto;
+  border-collapse: collapse;
   border-radius: 12px;
-  width: 85%;
-  height: 30%;
-  max-width: 1250px;
-  max-height: 60vh;
-  margin-top: 0.6vh;
-  padding-top: 12px;
-  padding-bottom: 1.5px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  font-size: 1rem;
+  background-color: white;
+  margin-top: 8vh;
+}
+
+th, td {
+  text-align: center;
+  padding: 1rem;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #db1f11;
   color: white;
-  margin-left: 7.5%;
+  font-weight: 600;
+  text-transform: uppercase;
 }
 
-.img {
-  border-radius: 16px;
-  width: 93.5%;
-  height: auto;
-  max-height: 25vh;
-  object-fit: cover;
+tr:nth-child(even) {
+  background-color: #2ccbe7;
 }
 
-h1 {
-  font-size: 0.3vh;
-  margin-bottom: 0;
-}
-
-button{
-    border-radius: 12px;
-    color: white;
-    background: linear-gradient(to right, #d4145a, #fbb03b); 
-    margin-top: 1.3vh;
-    font-family: 'Segoe UI', sans-serif;
-    font-size: 2.5vh;
-    margin-bottom: -8.5px;
-    font-weight: bold;
-    padding: 6.5px;
-
-}
-
-.products {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  padding: 3vh;
-  width: 100%;
-  max-width: 1000px;
-  margin-left: 11%;
-}
-
-.products img {
-  width: 90%;
-  max-width: 300px;
-  border-radius: 12px;
-  transition: transform 0.3s ease-in-out;
-
-}
-
-.products img:hover {
-  transform: scale(1.05);
-}
-
-@media (min-width: 768px) {
-  .products {
-    flex-direction: row;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-}
-
-@media (min-width: 1200px) {
-  .img {
-    max-height: 47vh;
-    max-width: 88%;
-  }
-
-  .products img {
-    max-width: 320px;
-    height: 29vh;
-  }
+tr:hover {
+  background-color: #ffe9d2;
+  transition: background-color 0.2s ease-in-out;
 }

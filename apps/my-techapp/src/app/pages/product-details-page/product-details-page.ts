@@ -12,6 +12,7 @@ import { get } from '../../states/product-details/action/app.action';
   imports: [CommonModule,RouterLink],
   templateUrl: './product-details-page.html',
   styleUrl: './product-details-page.css',
+  standalone: true, 
 })
 export class ProductDetailsPage implements OnInit {
 

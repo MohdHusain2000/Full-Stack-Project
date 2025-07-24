@@ -2,7 +2,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { catchError, debounceTime, map, switchMap, tap } from 'rxjs/operators';
+import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import * as AuthActions from '../action/users.action';
 import { UserService } from '../../../service/user.service';
 import { Router } from '@angular/router';
@@ -10,10 +10,12 @@ import { Router } from '@angular/router';
 @Injectable()
 export class UserEffects {
   authenticate$;
+  signInSuccess$ 
   checkAuth$;
   signUp$;
   signUpSuccess$;
   signOut$;
+  signOutSuccess$;
 
   constructor(
     private actions$: Actions,
@@ -34,6 +36,14 @@ export class UserEffects {
         )
       )
     );
+
+  this.signInSuccess$ = createEffect(() =>
+  this.actions$.pipe(
+    ofType(AuthActions.signInSuccess),
+    tap(() => this.router.navigate(['/']))
+  ),
+  { dispatch: false }
+);
 
     this.checkAuth$ = createEffect(() =>
       this.actions$.pipe(
@@ -67,7 +77,7 @@ export class UserEffects {
     this.signUpSuccess$ = createEffect(() =>
       this.actions$.pipe(
         ofType(AuthActions.signUpSuccess),
-        tap(() => this.router.navigate(['/login']))
+        tap(() => this.router.navigate(['/signIn']))
       ), { dispatch: false }
     );
 
@@ -82,5 +92,14 @@ export class UserEffects {
         )
       )
     );
+
+    this.signOutSuccess$ = createEffect(() =>
+      this.actions$.pipe(
+      ofType(AuthActions.signOutSuccess),
+      tap(() => this.router.navigate(['/signIn']))
+  ),
+    { dispatch: false }
+  );
+
   }
 }

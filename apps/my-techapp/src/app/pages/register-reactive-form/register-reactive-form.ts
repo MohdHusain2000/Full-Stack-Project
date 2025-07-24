@@ -1,13 +1,11 @@
 // https://medium.com/@krishsurya1249/angular-reactive-forms-c3effd9be1f0
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {ReactiveFormsModule, FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { provideStore, Store } from '@ngrx/store';
-import { signIn, signUp } from '../../states/auth/action/users.action';
-import { authReducer } from '../../states/auth/reducer/users.reducer';
+import { ReactiveFormsModule, FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { signUp } from '../../states/auth/action/users.action';
 import { UserService } from '../../service/user.service';
 import { Router, RouterLink } from '@angular/router';
-import { User } from '../../entities/user';
 import { UserRegister } from '../../entities/user-sign-up';
 
 @Component({

@@ -1,6 +1,5 @@
 import { Controller, Get, UseGuards } from '@nestjs/common';
 import { ProductsService } from './products.service';
-import { Public } from '../auth/auth.strategy';
 import { Product } from './product.entity';
 import { JwtAuthGuard } from '../auth/auth.guard';
 

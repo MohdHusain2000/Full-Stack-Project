@@ -2,9 +2,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {ReactiveFormsModule, FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { provideStore, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { signIn } from '../../states/auth/action/users.action';
-import { authReducer } from '../../states/auth/reducer/users.reducer';
 import { RouterLink } from '@angular/router';
 
 @Component({

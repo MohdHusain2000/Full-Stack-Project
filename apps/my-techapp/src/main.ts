@@ -21,4 +21,5 @@ bootstrapApplication(App, {
     provideEffects([UserEffects, ProductsEffects]),
     ...appConfig.providers
   ]
+  
 }).catch(err => console.error(err));

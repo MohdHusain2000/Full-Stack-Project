@@ -10,13 +10,35 @@
 
 [Click here to finish setting up your workspace!](https://cloud.nx.app/connect/zQYmNyyqBc)
 
+## Node.js Version
+This project requires Node.js v18.17.1.
+
+```bash
+npm ci
+```
+
+## add dependencies, use:
+
+```bash
+npm install --legacy-peer-deps
+```
 
 ## Run tasks
 
-To run the dev server for your app, use:
+To run the dev server for your app backEnd, use:
 
 ```sh
-npx nx serve my-techapp
+nx serve techapp-backend
+```
+
+To run the dev server for your app frontEnd, use:
+
+```sh
+nx serve my-techapp
+
+or 
+
+nx serve my-techapp --watch=false
 ```
 
 To create a production bundle:

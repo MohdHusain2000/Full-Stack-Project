@@ -14,7 +14,7 @@
 This project requires Node.js v18.17.1.
 
 ```bash
-npm ci
+npm ci --legacy-peer-deps
 ```
 
 ## add dependencies, use:
